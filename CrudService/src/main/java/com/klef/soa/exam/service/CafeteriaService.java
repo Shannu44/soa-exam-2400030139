@@ -1,34 +1,13 @@
 package com.klef.soa.exam.service;
 
 import java.util.List;
-
-import org.springframework.stereotype.Service;
-
 import com.klef.soa.exam.entity.Cafeteria;
-import com.klef.soa.exam.repository.CafeteriaRepository;
 
-@Service
-public class CafeteriaService {
+public interface CafeteriaService {
 
-    private final CafeteriaRepository repository;
+    Cafeteria addCafeteria(Cafeteria cafeteria);
 
-    public CafeteriaService(CafeteriaRepository repository) {
-        this.repository = repository;
-    }
+    List<Cafeteria> getAllCafeterias();
 
-    public Cafeteria addCafeteria(Cafeteria cafeteria) {
-        return repository.save(cafeteria);
-    }
-
-    public List<Cafeteria> getAllCafeterias() {
-        return repository.findAll();
-    }
-
-    public boolean deleteCafeteria(Long id) {
-        if (!repository.existsById(id)) {
-            return false;
-        }
-        repository.deleteById(id);
-        return true;
-    }
+    String deleteCafeteria(Long id);
 }

@@ -8,5 +8,6 @@ public class CrudServiceApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(CrudServiceApplication.class, args);
+        System.out.println("CrudService is Working Successfully!!!..");
     }
 }

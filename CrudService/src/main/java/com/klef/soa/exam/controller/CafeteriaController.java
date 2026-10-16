@@ -25,7 +25,8 @@ public class CafeteriaController {
 
     @PostMapping("/Add")
     public ResponseEntity<Cafeteria> add(@RequestBody Cafeteria cafeteria) {
-        return new ResponseEntity<>(service.addCafeteria(cafeteria), HttpStatus.CREATED);
+        return ResponseEntity.status(201)
+                .body(service.addCafeteria(cafeteria));
     }
 
     @GetMapping("/DisplayAll")
@@ -34,11 +35,7 @@ public class CafeteriaController {
     }
 
     @DeleteMapping("/Delete/{id}")
-    public ResponseEntity<String> delete(@PathVariable Long id) {
-        if (!service.deleteCafeteria(id)) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND)
-                    .body("Cafeteria not found with id: " + id);
-        }
-        return ResponseEntity.ok("Cafeteria deleted successfully!");
+    public String delete(@PathVariable Long id) {
+        return service.deleteCafeteria(id);
     }
 }
